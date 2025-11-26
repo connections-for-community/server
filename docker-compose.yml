@@ -1,0 +1,28 @@
+services:
+  n8n:
+    build: .
+    ports:
+      - "5678:5678"
+
+    env_file:
+      - .env
+
+    environment:
+      - TZ=America/Vancouver
+      - GENERIC_TIMEZONE=America/Vancouver
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_RUNNERS_ENABLED=true
+
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_LISTEN_ADDRESS=0.0.0.0
+
+    volumes:
+      - ./:/home/node
+      - pw_cache:/home/node/.cache/ms-playwright
+
+
+volumes:
+  pw_cache:
+  n8n_data:
